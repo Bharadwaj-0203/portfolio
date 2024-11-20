@@ -14,37 +14,31 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = ['Home', 'About', 'Projects', 'Skills', 'Contact'];
-
-  const navbarVariants = {
-    hidden: { y: -100 },
-    visible: { 
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 20
-      }
+  // Add smooth scroll handling
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+      setIsMenuOpen(false); // Close mobile menu after clicking
     }
   };
 
-  const menuItemVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.5
-      }
-    })
-  };
+  const navItems = [
+    { title: 'Home', id: 'home' },
+    { title: 'About', id: 'about' },
+    { title: 'Projects', id: 'projects' },
+    { title: 'Skills', id: 'skills' },
+    { title: 'Contact', id: 'contact' }
+  ];
 
   return (
     <motion.nav
       initial="hidden"
       animate="visible"
-      variants={navbarVariants}
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg' 
@@ -58,23 +52,26 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center"
           >
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
+            <a 
+              href="#home"
+              onClick={(e) => handleNavClick(e, 'home')}
+              className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text"
+            >
               BT
-            </span>
+            </a>
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item, i) => (
               <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                custom={i}
-                variants={menuItemVariants}
+                key={item.title}
+                href={`#${item.id}`}
+                onClick={(e) => handleNavClick(e, item.id)}
                 className="text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 
-                         transition-colors duration-300 relative group"
+                         transition-colors duration-300 relative group cursor-pointer"
               >
-                {item}
+                {item.title}
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform scale-x-0 
                                group-hover:scale-x-100 transition-transform duration-300" />
               </motion.a>
@@ -102,17 +99,13 @@ const Navbar = () => {
           >
             {navItems.map((item, i) => (
               <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                custom={i}
-                variants={menuItemVariants}
-                initial="hidden"
-                animate="visible"
+                key={item.title}
+                href={`#${item.id}`}
+                onClick={(e) => handleNavClick(e, item.id)}
                 className="block px-4 py-2 text-gray-600 hover:text-blue-600 dark:text-gray-300 
                          dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800"
-                onClick={() => setIsMenuOpen(false)}
               >
-                {item}
+                {item.title}
               </motion.a>
             ))}
           </motion.div>
