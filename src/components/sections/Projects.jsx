@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, ChevronRight } from 'lucide-react';
 import Card from '../ui/Card';
 
-const p1 = "/images/tech.jpg";
-const p2 = "/images/col.png";
-const p3 = "/images/tra.png";
-const p4 = "/images/cip.png";
-const p5 = "/images/mob.png";
+const p1 = "/portfolio/images/tech.jpg";
+const p2 = "/portfolio/images/col.png";
+const p3 = "/portfolio/images/tra.png";
+const p4 = "/portfolio/images/cip.png";
+const p5 = "/portfolio/images/mob.png";
 
 const projects = [
   {

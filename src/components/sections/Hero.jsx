@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Download, ChevronDown } from 'lucide-react';
 import AnimatedBackground from '../ui/AnimatedBackground';
 import AnimatedText from '../ui/AnimatedText';
-const propic = "/images/propic.jpg";
+const propic = "/portfolio/images/propic.jpg";
 
 const Hero = () => {
   return (
@@ -67,7 +67,7 @@ const Hero = () => {
               className="flex flex-wrap gap-4"
             >
               <motion.a
-                href="/resume.pdf"
+                href="/portfolio/resume.pdf"
                 download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
