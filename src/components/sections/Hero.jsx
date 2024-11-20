@@ -60,7 +60,7 @@ const Hero = () => {
               Passionate about creating efficient, scalable solutions with
               expertise in full-stack development.
             </motion.p>
-            // In Hero.jsx, update the "Let's Connect" button:
+
             {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
